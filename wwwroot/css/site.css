@@ -1,16 +1,32 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html, body {
+body{
     font-family: Arial, Helvetica, sans-serif;
-    
+    background-color: skyblue;
 }
-a{
-    color:black;
-    text-decoration: double;
-    margin: 10px;
-    padding: 10px;
-    background-color: rgba(00, 00, 00, 0.5);
+
+
+h1{
+    position: absolute;
+    top: 5%;
+    left: 43%;
+    padding: 80px;
+    font-size: 50px;
 }
-ul{
-    list-style: none;
+
+button{
+    top: 80%;
+    left: 44%;
+    background-color:black;
+    border: none;
+    padding: 15px;
+    width: 10%;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: deepskyblue;
 }

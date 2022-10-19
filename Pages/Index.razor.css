@@ -1,0 +1,40 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.titulo{
+    position: absolute;
+    top: 5%;
+    left: 35%;
+    padding: 80px;
+    font-size: 50px;
+}
+
+.button{
+    background-color:black;
+    border: none;
+    padding: 20px 10px ;
+    text-decoration: none;
+    border-radius: 15px;
+    color: white;
+    width: 200px;
+    height: 70px;
+    
+}
+a{ 
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 400px;
+
+    
+}
+
+button:hover{
+    background-color: #32cd32;
+    color: black;
+}
+

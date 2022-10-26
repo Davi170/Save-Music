@@ -3,7 +3,9 @@
     justify-content: center;
     align-items: center;
     border: none;
+    color: rgb(0, 255, 21);
 }
+
 
 .titulo{
     position: absolute;
@@ -11,6 +13,18 @@
     left: 35%;
     padding: 80px;
     font-size: 50px;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 0 0 15px rgb(14, 14, 14), 0 0 25px rgb(7, 7, 7);
+    animation: animate 1.5s linear infinite;
+}
+
+@keyframes animate{
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }
 
 .button{
@@ -22,15 +36,14 @@
     color: white;
     width: 200px;
     height: 70px;
-    
+    font-family: Verdana, Tahoma, sans-serif;
 }
+
 a{ 
     text-decoration: none;
     font-size: 15px;
     cursor: pointer;
     margin-top: 400px;
-
-    
 }
 
 button:hover{

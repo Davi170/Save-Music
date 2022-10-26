@@ -18,11 +18,12 @@ public class SpotifyController : ControllerBase
             "/authorize?response_type=code&client_id=c3f60b3448904bb388f72beee6fccff9&" + 
             "scope=playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public-read-private user-read-email&redirect_uri=https://localhost:7231/&" +
             "state=CARACTERESALEATORIOS");
+            return Ok();
     }
 
     [HttpGet("callback")]
     public async Task<IActionResult> Callback()
     {
-        
+        return Ok();
     }
 }

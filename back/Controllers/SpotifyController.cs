@@ -15,9 +15,8 @@ public class SpotifyController : ControllerBase
         HttpClient client = new HttpClient();
         client.BaseAddress = new Uri("https://accounts.spotify.com");
         var result = await client.GetAsync(
-            "/authorize?response_type=code&client_id=c3f60b3448904bb388f72beee6fccff9&" + 
-            "scope=playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public-read-private user-read-email&redirect_uri=https://localhost:7231/playlists&" +
-            "state=CARACTERESALEATORIOS");
+            "https://accounts.spotify.com/authorize?response_type=code&client_id=c3f60b3448904bb388f72beee6fccff9&" + 
+            "scope=playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private&redirect_uri=https://localhost:7231/playlists&");
             return Ok();
     }
 

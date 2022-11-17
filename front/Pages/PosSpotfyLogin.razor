@@ -1,0 +1,17 @@
+@inject NavigationManager nav
+
+@page "/posSpotfyLogin"
+
+<h1>Aguarde...</h1>
+
+@code {
+    [Parameter]
+    public string code { get; set; }
+    [Parameter]
+    public string state { get; set; }
+
+    public override void OnAfterRender(bool firstRender)
+    {
+        nav.NavigateTo("url foda do spotfilho", true)
+    }
+}

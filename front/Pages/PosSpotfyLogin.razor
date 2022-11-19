@@ -10,8 +10,24 @@
     [Parameter]
     public string state { get; set; }
 
-    public override void OnAfterRender(bool firstRender)
+    protected override void OnAfterRender(bool firstRender)
     {
-        nav.NavigateTo("url foda do spotfilho", true)
+        nav.NavigateTo("https://accounts.spotify.com/api/token", true);
+
+        Task<NavigationManager>();
+    {
+        var client_id = "c3f60b3448904bb388f72beee6fccff9";
+        var redirect_uri = "https://localhost:7008/playlists";
+        
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri("https://accounts.spotify.com");
+        var state = "daviDAVId4v1ivad";
+        var callback = "https://localhost:7008/callback";
+        var result = Task client.GetAsync(
+            "https://accounts.spotify.com/authorize?response_type=code&client_id=c3f60b3448904bb388f72beee6fccff9&" + 
+            "scope=playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private&redirect_uri=" + callback + "&" +
+            "state=" + state);
+    }
+
     }
 }

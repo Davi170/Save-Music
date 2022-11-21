@@ -1,33 +1,53 @@
+@using Microsoft.AspNetCore.WebUtilities
+@using System.Net.Http.Headers
+@using System.Text
+
 @inject NavigationManager nav
+@inject HttpClient client
+@inject AppInfo info
 
 @page "/posSpotfyLogin"
 
-<h1>Aguarde...</h1>
+<h1>Autentificando...</h1>
 
 @code {
-    [Parameter]
-    public string code { get; set; }
-    [Parameter]
     public string state { get; set; }
+    public string spotyCode { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async void OnAfterRender(bool firstRender)
     {
-        nav.NavigateTo("https://accounts.spotify.com/api/token", true);
-
-        Task<NavigationManager>();
-    {
-        var client_id = "c3f60b3448904bb388f72beee6fccff9";
-        var redirect_uri = "https://localhost:7008/playlists";
+        var dict = QueryHelpers.ParseQuery(new Uri(nav.Uri).Query);
+        this.spotyCode = dict["code"];
+        this.state = dict["state"];
         
-        HttpClient client = new HttpClient();
-        client.BaseAddress = new Uri("https://accounts.spotify.com");
-        var state = "daviDAVId4v1ivad";
-        var callback = "https://localhost:7008/callback";
-        var result = Task client.GetAsync(
-            "https://accounts.spotify.com/authorize?response_type=code&client_id=c3f60b3448904bb388f72beee6fccff9&" + 
-            "scope=playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private&redirect_uri=" + callback + "&" +
-            "state=" + state);
+        var url = "https://accounts.spotify.com/api/token";
+
+        var client_id = "c3f60b3448904bb388f72beee6fccff9";
+        var client_secret = "0ae2399c8b354e79b268661da87127fe";
+        var authorization = "Basic " + Convert.ToBase64String(
+            Encoding.ASCII.GetBytes(client_id + ":" + client_secret)
+        );
+
+        var message = new HttpRequestMessage(HttpMethod.Post, url);
+        message.Headers.Add("Authorization", authorization);
+        var param = new Dictionary<string, string?>() 
+        { 
+            { "code", spotyCode },
+            { "grant_type", "authorization_code" },
+            { "redirect_uri", "http://localhost:5115/posSpotfyLogin" }
+        };
+        message.Content = new FormUrlEncodedContent(param);
+        message.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+        
+
+        var response = await client.SendAsync(message);
+        var token = await response.Content.ReadFromJsonAsync<spotifyToken>();
+
+        // TODO: Send to Fucking backend
+
+        info.spotifyConnected = true;
+
+        nav.NavigateTo("/");
     }
 
-    }
 }

@@ -1,9 +1,37 @@
-﻿@page "/"
+﻿@using Microsoft.AspNetCore.WebUtilities
+
+@inject NavigationManager nav
+@inject AppInfo info
+
+@page "/"
 
 <PageTitle>index</PageTitle>
 <div class="container">
-    <h1 class=titulo>Save Music</h1>
-    <a href="https://accounts.spotify.com/authorize?response_type=code&client_id=c3f60b3448904bb388f72beee6fccff9&scope=playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private&redirect_uri=https://localhost:7008/playlists">
-        <button class="flex button">Logar com spotify</button>
-    </a>
+    <p>
+        <h1 class=titulo>Save Music</h1>
+    </p>
+    @if (!info.spotifyConnected)
+    {
+        <p class="pbutton">
+            <button class="flex button" onclick="@OpenSpotfyAuth">Logar com spotify</button>
+        </p>
+    }
 </div>
+
+@code
+{
+    public void OpenSpotfyAuth()
+    {
+        string basePath = "https://accounts.spotify.com/authorize?";
+        var param = new Dictionary<string, string?>() 
+        { 
+            { "response_type", "code" },
+            { "client_id", "c3f60b3448904bb388f72beee6fccff9" },
+            { "scope", "playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private" },
+            { "redirect_uri", "http://localhost:5115/posSpotfyLogin" },
+            { "state", "robson" }
+        };
+        var url = QueryHelpers.AddQueryString(basePath, param);
+        nav.NavigateTo(url);
+    }
+}

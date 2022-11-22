@@ -1,6 +1,7 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: skyblue;
+    background-image: url(./equalizer3.png);
+    background-position: auto;
+    background-repeat: no-repeat;
 }

@@ -43,7 +43,7 @@
         var response = await client.SendAsync(message);
         var token = await response.Content.ReadFromJsonAsync<spotifyToken>();
 
-        // TODO: Send to Fucking backend
+        // Fazer uma requizição
 
         info.spotifyConnected = true;
 

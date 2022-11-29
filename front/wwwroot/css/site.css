@@ -1,7 +1,6 @@
-@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-
 body{
     background-image: url(./equalizer3.png);
-    background-position: auto;
+    background-size: 100%;
     background-repeat: no-repeat;
+
 }

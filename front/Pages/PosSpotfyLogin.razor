@@ -44,6 +44,9 @@
         var token = await response.Content.ReadFromJsonAsync<spotifyToken>();
 
         // Fazer uma requizição
+        var requisicaoWeb = spotifyToken.HttpPost("http://localhost:5115/posSpotfyLogin");         
+        requisicaoWeb.Method = "POST";
+        requisicaoWeb.UserAgent = "RequisicaoWebDemo";
 
         info.spotifyConnected = true;
 

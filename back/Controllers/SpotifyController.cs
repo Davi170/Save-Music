@@ -11,7 +11,10 @@ public class SpotifyController : ControllerBase
     [HttpPost]
     public async Task Post([FromBody]spotifyToken token)
     {
-        
+        var retorno = new spotifyToken();
+        {
+            
+        }
     }
     
  

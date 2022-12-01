@@ -45,9 +45,10 @@
         var token = await response.Content.ReadFromJsonAsync<SpotifyToken>();
 
         spotify.SendToken(token);
-
+        
         info.spotifyConnected = true;
         nav.NavigateTo("/");
+    
     }
 
 }

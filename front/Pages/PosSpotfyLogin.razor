@@ -5,6 +5,7 @@
 @inject NavigationManager nav
 @inject HttpClient client
 @inject AppInfo info
+@inject SpotifyService spotify
 
 @page "/posSpotfyLogin"
 
@@ -41,15 +42,11 @@
         
 
         var response = await client.SendAsync(message);
-        var token = await response.Content.ReadFromJsonAsync<spotifyToken>();
+        var token = await response.Content.ReadFromJsonAsync<SpotifyToken>();
 
-        // Fazer uma requizição
-        var requisicaoWeb = spotifyToken.HttpPost("http://localhost:5115/posSpotfyLogin");         
-        requisicaoWeb.Method = "POST";
-        requisicaoWeb.UserAgent = "RequisicaoWebDemo";
+        spotify.SendToken(token);
 
         info.spotifyConnected = true;
-
         nav.NavigateTo("/");
     }
 

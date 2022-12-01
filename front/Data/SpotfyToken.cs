@@ -1,4 +1,4 @@
-public record spotifyToken
+public record SpotifyToken
 {
     public string Access_Token { get; set; }
     public string Token_Type { get; set; }

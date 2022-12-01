@@ -9,6 +9,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<HttpClient>(p => new HttpClient());
 builder.Services.AddSingleton<AppInfo>(p => new AppInfo());
+builder.Services.AddSingleton<SpotifyService>(p => new SpotifyService());
 
 var app = builder.Build();
 

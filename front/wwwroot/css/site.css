@@ -1,6 +1,37 @@
 body{
-    background-image: url(./equalizer3.png);
-    background-size: 100%;
+    background-image: url(imagens/equalizer3.png);
+    background-position: center center;
+    background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: black;
 
+}
+
+/*@media screen and (max-width: 500px) {
+    body {
+        background-image: url(imagens/equalizer3.png);
+        background: black;
+    }
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+.container{
+    background-image: url(imagens/equalizer3.png);
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    background-size: 100%;
+    background-position: center center;
+
+}
+@media screen and (max-width: 600px) {
+    body {
+        background: black;
+    }
 }

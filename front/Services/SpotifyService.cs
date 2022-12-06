@@ -1,9 +1,11 @@
 public class SpotifyService
 {
-    public async void SendToken(SpotifyToken token)
+    public async Task<string> SendToken(SpotifyToken token)
     {
         HttpClient client = new HttpClient();
         client.BaseAddress = new Uri("https://localhost:7008");
-        await client.PostAsJsonAsync("spotify", token);
+        var content = await client.PostAsJsonAsync("spotify", token);
+
+        return await content.Content.ReadAsStringAsync();
     }
 }

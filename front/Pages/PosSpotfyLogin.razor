@@ -1,11 +1,13 @@
 @using Microsoft.AspNetCore.WebUtilities
 @using System.Net.Http.Headers
 @using System.Text
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 
 @inject NavigationManager nav
 @inject HttpClient client
 @inject AppInfo info
 @inject SpotifyService spotify
+@inject ProtectedSessionStorage storage
 
 @page "/posSpotfyLogin"
 
@@ -43,7 +45,8 @@
         var response = await client.SendAsync(message);
         var token = await response.Content.ReadFromJsonAsync<SpotifyToken>();
 
-        spotify.SendToken(token);
+        string userToken = await spotify.SendToken(token);
+        await storage.SetAsync("token", userToken);
         
         info.spotifyConnected = true;
         nav.NavigateTo("/");

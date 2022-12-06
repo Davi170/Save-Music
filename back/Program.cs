@@ -1,3 +1,5 @@
+using Trevisharp.Security.Jwt;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<CryptoService>(p => new CryptoService()
+{
+    InternalKeySize = 12,
+    UpdatePeriod = TimeSpan.FromDays(1)
+});
 
 var app = builder.Build();
 

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using projeto_tds3.Data;
+using Trevisharp.Security.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 

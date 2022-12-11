@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace back.Controllers;
 
+using System.Net;
 using Model;
 using Trevisharp.Security.Jwt;
 
@@ -35,13 +36,14 @@ public class SpotifyController : ControllerBase
         }
         catch
         {
-
+           
         }
 
         var url = "https://api.spotify.com/v1/me/playlists";
         var header = "Content-Type: application/json";
-        var Authorization = "Bearer {$SpotifyToken}";
+        var Authorization = $"Bearer {token}";
+    
 
         return NotFound();
     }
-}
+} 

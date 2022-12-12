@@ -17,10 +17,14 @@ public class SpotifyController : ControllerBase
     {
         UsuarioToken userToken = new UsuarioToken();
         userToken.AccessToken = token.Access_Token;
+        userToken.Scope = token.Scope;
+        userToken.TokenType = token.Token_Type;
+        userToken.RefreshToken = token.Refresh_Token;
 
         using TccContext context = new TccContext();
         context.Add(userToken);
         context.SaveChanges();
+        
 
         return Ok(jwt.GetToken(userToken.UsuarioId));
     }
@@ -44,7 +48,7 @@ public class SpotifyController : ControllerBase
             var header = "Content-Type: application/json";
             var Authorization = $"Bearer {token}";
 
-            var result = cliente.PostAsJsonAsync(url, header).Result.Content.ReadAsStringAsync().Result;
+            var result = await cliente.PostAsJsonAsync(url, header).Result.Content.ReadAsStringAsync();
         return NotFound();
     }
 } 

@@ -36,13 +36,15 @@ public class SpotifyController : ControllerBase
         }
         catch
         {
-           
+           throw;
         }
             HttpClient cliente = new HttpClient();
+            
             var url = "https://api.spotify.com/v1/me/playlists";
             var header = "Content-Type: application/json";
             var Authorization = $"Bearer {token}";
-        
+
+            var result = cliente.PostAsJsonAsync(url, header).Result.Content.ReadAsStringAsync().Result;
         return NotFound();
     }
 } 

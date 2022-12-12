@@ -25,13 +25,13 @@ public partial class TccContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=FACILITY;Initial Catalog=TCC;Integrated Security=SSPI;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=CCH06LABM36\\SQLEXPRESS;Initial Catalog=TCC;Integrated Security=SSPI;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<LoginPessoa>(entity =>
         {
-            entity.HasKey(e => e.PessoaId).HasName("PK__login_pe__434CC5DB488BFF40");
+            entity.HasKey(e => e.PessoaId).HasName("PK__login_pe__434CC5DB00C2BA69");
 
             entity.ToTable("login_pessoa");
 
@@ -50,7 +50,7 @@ public partial class TccContext : DbContext
 
         modelBuilder.Entity<Musica>(entity =>
         {
-            entity.HasKey(e => e.IdMusica).HasName("PK__musicas__3B16D4E8D99BE8C3");
+            entity.HasKey(e => e.IdMusica).HasName("PK__musicas__3B16D4E8D2589C7A");
 
             entity.ToTable("musicas");
 
@@ -66,7 +66,7 @@ public partial class TccContext : DbContext
 
         modelBuilder.Entity<Playlist>(entity =>
         {
-            entity.HasKey(e => e.IdPlaylist).HasName("PK__playlist__666FAF756C13D13C");
+            entity.HasKey(e => e.IdPlaylist).HasName("PK__playlist__666FAF75E95C17A9");
 
             entity.ToTable("playlist");
 
@@ -86,43 +86,37 @@ public partial class TccContext : DbContext
 
         modelBuilder.Entity<UsuarioToken>(entity =>
         {
-            entity.HasKey(e => e.UsuarioTokenId).HasName("PK__UsuarioT__32A3E80F263D1036");
+            entity
+                .HasNoKey()
+                .ToTable("UsuarioToken");
 
-            entity.ToTable("UsuarioToken");
-
-            entity.Property(e => e.UsuarioTokenId)
-                .ValueGeneratedNever()
-                .HasColumnName("UsuarioTokenID");
             entity.Property(e => e.AccessToken)
-                .HasMaxLength(52)
+                .HasMaxLength(300)
                 .IsUnicode(false)
                 .HasColumnName("Access_Token");
             entity.Property(e => e.ExpiresIn)
-                .HasMaxLength(90)
+                .HasMaxLength(300)
                 .IsUnicode(false)
                 .HasColumnName("Expires_In");
             entity.Property(e => e.RefreshToken)
-                .HasMaxLength(90)
+                .HasMaxLength(300)
                 .IsUnicode(false)
                 .HasColumnName("Refresh_Token");
             entity.Property(e => e.Scope)
-                .HasMaxLength(90)
+                .HasMaxLength(300)
                 .IsUnicode(false);
             entity.Property(e => e.TipoToken)
-                .HasMaxLength(50)
+                .HasMaxLength(300)
                 .IsUnicode(false);
             entity.Property(e => e.Token)
-                .HasMaxLength(36)
+                .HasMaxLength(300)
                 .IsUnicode(false);
             entity.Property(e => e.TokenType)
-                .HasMaxLength(80)
+                .HasMaxLength(300)
                 .IsUnicode(false)
                 .HasColumnName("Token_Type");
             entity.Property(e => e.UsuarioId).HasColumnName("UsuarioID");
-
-            entity.HasOne(d => d.Usuario).WithMany(p => p.UsuarioTokens)
-                .HasForeignKey(d => d.UsuarioId)
-                .HasConstraintName("FK__UsuarioTo__Usuar__2A4B4B5E");
+            entity.Property(e => e.UsuarioTokenId).HasColumnName("UsuarioTokenID");
         });
 
         OnModelCreatingPartial(modelBuilder);

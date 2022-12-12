@@ -10,6 +10,4 @@ public partial class LoginPessoa
     public string EmailPessoa { get; set; } = null!;
 
     public string SenhaPessoa { get; set; } = null!;
-
-    public virtual ICollection<UsuarioToken> UsuarioTokens { get; } = new List<UsuarioToken>();
 }

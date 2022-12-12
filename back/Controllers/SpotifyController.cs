@@ -38,12 +38,11 @@ public class SpotifyController : ControllerBase
         {
            
         }
-
-        var url = "https://api.spotify.com/v1/me/playlists";
-        var header = "Content-Type: application/json";
-        var Authorization = $"Bearer {token}";
-    
-
+            HttpClient cliente = new HttpClient();
+            var url = "https://api.spotify.com/v1/me/playlists";
+            var header = "Content-Type: application/json";
+            var Authorization = $"Bearer {token}";
+        
         return NotFound();
     }
 } 
